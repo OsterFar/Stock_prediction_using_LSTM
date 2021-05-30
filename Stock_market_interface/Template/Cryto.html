@@ -1,0 +1,102 @@
+
+{% extends "Base.html" %}
+{% load static%}
+
+<!-- ACtive navbar -->
+{% block nav%}
+<li class="nav-item">
+  <a class="nav-link" id = "home" onclick="func(this.id)"aria-current="page" href="{% url 'home'%}">Popular</a>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link active" id = "Cryto" onclick="func(this.id)" href="{% url 'cryptohome'%}">CryptoCurrency</a>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link" id = "news" onclick="func(this.id)" href="{% url 'newshome'%}">News</a>
+  </li>
+{% endblock%}
+
+
+{% block Body_Header%}
+<link rel="stylesheet" href="{% static 'css/Crpyto.css' %}">
+
+<!--### any css styling if you want to add for any particular page ####-->
+{% endblock%}
+
+<!-- Content -->
+
+
+{% block Body_Content%}
+<div style = "background-color:#f7f7f7; width: 100vw; padding: 2vw; ">  
+    <div class = "container-fluid">
+        <div class="container" id="heading" style ="display:flex; justify-content: center; flex-wrap: wrap;">
+            <h3> Active Cryto Stocks  </h3>
+            Result were generated Few minutes ago . Pricing data is being Updated  , Currency in USD 
+        </div>
+        <div class ="Buttons_class"style="display:flex; justify-content:center; flex-wrap:wrap;">
+            
+            <div  id = "container-btn" style="display:flex; flex-direction: column; ">
+                <h4 class="display-4"> BitCoin-USD(BTC-USD)</h4>
+                <div id = "Btn-container">
+                    <div id = "paragraph">
+                        Bitcoin is a digital currency that is not tied to a bank or government and allows users to spend money anonymously. The coins are created by users who “mine” them by lending computing power to verify other users' transactions. They receive Bitcoins in exchange
+                    </div>
+                    <div class ="Btn-Refresh row">
+                        <div class="col btnsplitcol bg-primary" > <i class="fa fa-refresh" aria-hidden="true"></i></div>
+                        {% comment %} <div class="col btnsplitcol"> Refresh</div> {% endcomment %}
+                    </div>
+                    <div class ="Btn-Info row">
+                        <div class="col btnsplitcol bg-warning"> <i class="fa fa-info-circle"></i></div>
+                        {% comment %} <div class="col btnsplitcol"> Info</div> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+            
+           
+            
+
+
+        </div>
+        
+    <div>
+</div>
+
+<h4> Summary </h4>
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">name</th>
+      <th scope="col">startDate</th>
+      <th scope="col">averageVolume10days</th>
+      <th scope="col">quoteType</th>
+      <th scope="col">regularMarketPrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>{{content.info.sharesOutstanding}}</td>
+      <td>{{content.info.startDate}}</td>
+      <td>{{content.info.averageVolume10days}}</td>
+      <td>{{content.info.quoteType}}</td>
+      <td>{{content.info.regularMarketPrice}}</td>
+
+      
+    </tr>
+    
+   
+  </tbody>
+</table>
+
+
+<div>
+  <button class="button" onClick="window.location.href = 'graphCryto/{{content.slug}}' ;"> GRAPH1</button>
+<div>
+<form  METHOD="POST">
+   {% csrf_token %} 
+  <button class="button" type="submit"> GRAPH2</button>
+
+</form>
+  
+
+{% endblock %}

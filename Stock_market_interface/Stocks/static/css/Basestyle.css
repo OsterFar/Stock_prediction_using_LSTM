@@ -1,0 +1,36 @@
+*{
+    margin:0px;
+    padding: 0px;
+    font-size: 2rem;
+}
+body {
+    margin:0px;
+    padding: 0px;
+    font-size: 2rem;
+}
+/* Navbar */
+li.nav-item {
+    padding: 0px 45px;
+}
+ul {
+    padding: 0px 12px; 
+}
+
+#logo {
+    max-width: 15vw;
+    max-height: 7vh;
+}
+#navbarSupportedContent {
+    margin-left: 15vw;
+}
+
+.button {
+    width: 100vw;
+    border-radius: 42px;
+    background: dimgrey;
+}
+.button:hover {
+    width: 100vw;
+    border-radius: 42px;
+    background: rgb(61, 61, 61);
+}

@@ -1,0 +1,167 @@
+{% extends "index.html" %}
+{% comment %} {% extends "Base.html" %} {% endcomment %}
+
+{% load static%}
+
+
+
+
+{% comment %} <script>
+    $("#refresh").click(function () => {
+      var username = $(this).val();
+      console.log("njsfbabfanfb")
+      $.ajax({
+        url: 'ajax/Refresh/',
+        data: {
+          'username': dataa
+        },
+        dataType: 'json',
+        success: function (data) {
+          var htmll = "<tr> <td> HAhha </td> </tr>"
+          $(table).append(htmll)
+        }
+      });
+
+    });
+</script>
+
+<!-- ACtive navbar -->
+{% block nav%}
+<li class="nav-item">
+  <a class="nav-link active" id = "home" onclick="func(this.id)"aria-current="page" href="{% url 'home'%}">Popular</a>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link" id = "Cryto" onclick="func(this.id)" href="{% url 'cryptohome'%}">CryptoCurrency</a>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link" id = "news" onclick="func(this.id)" href="{% url 'newshome'%}">News</a>
+  </li>
+{% endblock%}
+
+
+
+
+<!-- Content --> {% endcomment %}
+{% block Body_Header%}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<!--### any css styling if you want to add for any particular page ####-->
+{% endblock%}
+
+{% block PAGE_NAmE %} 
+  STOCK_PREDICTION 
+{% endblock%}
+
+{% block Body_content_admin%}
+<div style = "background-color:#f7f7f7; width: 100vw; padding: 2vw; ">   
+    <div class = "container-fluid">
+        <div class="container" id="heading" style ="display:flex; justify-content: center; flex-wrap: wrap;margin: 0px;padding: 0px;">
+            <h3> POPULAR STOCK LISTING </h3>
+            Hello world i m here for u to get good desert 
+        </div>
+        <div class ="Buttons_class"style="display:flex; justify-content:center; flex-wrap:wrap;">
+            <div class ="Btn-Refresh row" id ="refresh" style="margin-left: 0px;">
+                <div class="col btnsplitcol bg-primary" > <i class="fa fa-refresh" aria-hidden="true"></i></div>
+                <div class="col btnsplitcol"  > Refresh</div>
+            </div>
+            <div class ="Btn-Info row">
+                <div class="col btnsplitcol bg-warning"> <i class="fa fa-info-circle"></i></div>
+                <div class="col btnsplitcol"> Info</div>
+            </div>
+            <div class ="Btn-Search row">
+                <div class="col btnsplitcol "> <i class="fa fa-search"></i></div>
+                <div class="search col btnsplitcol" style ="padding: 0px;
+                padding-top: 4px;"> <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></div>
+            </div>
+            
+
+
+        </div>
+        
+    <div>
+</div>
+
+<table class="table table-dark table-striped" style="width: 78vw;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">TICKER</th>
+      <th scope="col">NAME</th>
+      <th scope="col">PRICE</th>
+      <th scope="col">Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+     {% comment %} <input type=button class="btn btn-primary" style="font-size: 18px"
+                                   onClick="window.location = 'dagent/' +  {{ agent.pk }}" value="Delete"> {% endcomment %}
+    
+    
+    <tr onClick="window.location.href = 'Stock/tsla' ;">
+      <th scope="row">1</th>
+      <td>tsla </td>
+      <td>{{content.tsla.shortName}}</td>
+      <td>{{content.tsla.dayHigh}}</td>
+      <td>{{content.tsla.52WeekChange}}</td>
+    </tr>
+    
+    <tr onClick="window.location.href = 'Stock/BABA' ;">
+      <th scope="row">2</th>
+      <td>BABA </td>
+      <td>{{content.BABA.shortName}}</td>
+      <td>{{content.BABA.dayHigh}}</td>
+      <td>{{content.BABA.52WeekChange}}</td>
+    </tr>
+
+    <tr onClick="window.location.href = 'Stock/gme' ;">
+      <th scope="row">3</th>
+      <td>gme </td>
+      <td>{{content.gme.shortName}}</td>
+      <td>{{content.gme.dayHigh}}</td>
+      <td>{{content.gme.52WeekChange}}</td>
+    </tr>
+
+    <tr onClick="window.location.href = 'Stock/irbt' ;">
+      <th scope="row">4</th>
+      <td>irbt </td>
+      <td>{{content.irbt.shortName}}</td>
+      <td>{{content.irbt.dayHigh}}</td>
+      <td>{{content.irbt.52WeekChange}}</td>
+    </tr>
+
+    <tr onClick="window.location.href = 'Stock/sq' ;">
+      <th scope="row">5</th>
+      <td>sq </td>
+      <td>{{content.sq.shortName}}</td>
+      <td>{{content.sq.dayHigh}}</td>
+      <td>{{content.sq.52WeekChange}}</td>
+    </tr>
+
+
+    <tr onClick="window.location.href = 'Stock/aapl' ;">
+      <th scope="row">6</th>
+      <td>aapl </td>
+      <td>{{content.aadp.shortName}}</td>
+      <td>{{content.aadp.dayHigh}}</td>
+      <td>{{content.aadp.52WeekChange}}</td>
+    </tr>
+
+
+    <tr onClick="window.location.href = 'Stock/msft' ;">
+      <th scope="row">7</th>
+      <td>msft </td>
+      <td>{{content.msft.shortName}}</td>
+      <td>{{content.msft.dayHigh}}</td>
+      <td>{{content.msft.52WeekChange}}</td>
+    </tr>
+
+    
+    
+    
+  
+  </tbody>
+</table>
+
+
+    
+{% endblock %}
