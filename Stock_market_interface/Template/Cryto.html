@@ -1,18 +1,10 @@
 
-{% extends "Base.html" %}
+{% extends "index.html" %}
 {% load static%}
 
-<!-- ACtive navbar -->
-{% block nav%}
-<li class="nav-item">
-  <a class="nav-link" id = "home" onclick="func(this.id)"aria-current="page" href="{% url 'home'%}">Popular</a>
-  </li>
-  <li class="nav-item">
-  <a class="nav-link active" id = "Cryto" onclick="func(this.id)" href="{% url 'cryptohome'%}">CryptoCurrency</a>
-  </li>
-  <li class="nav-item">
-  <a class="nav-link" id = "news" onclick="func(this.id)" href="{% url 'newshome'%}">News</a>
-  </li>
+
+{% block PAGE_NAmE %} 
+  CRYPTO_PREDICTION 
 {% endblock%}
 
 
@@ -25,8 +17,8 @@
 <!-- Content -->
 
 
-{% block Body_Content%}
-<div style = "background-color:#f7f7f7; width: 100vw; padding: 2vw; ">  
+{% block Body_content_admin%}
+<div style = "background-color:#f7f7f7; padding: 2vw; ">  
     <div class = "container-fluid">
         <div class="container" id="heading" style ="display:flex; justify-content: center; flex-wrap: wrap;">
             <h3> Active Cryto Stocks  </h3>
@@ -40,12 +32,12 @@
                     <div id = "paragraph">
                         Bitcoin is a digital currency that is not tied to a bank or government and allows users to spend money anonymously. The coins are created by users who “mine” them by lending computing power to verify other users' transactions. They receive Bitcoins in exchange
                     </div>
-                    <div class ="Btn-Refresh row">
+                    <div class ="Btn-Refresh row" onClick="window.location.href = '{{content.slug}}' ;">
                         <div class="col btnsplitcol bg-primary" > <i class="fa fa-refresh" aria-hidden="true"></i></div>
                         {% comment %} <div class="col btnsplitcol"> Refresh</div> {% endcomment %}
                     </div>
                     <div class ="Btn-Info row">
-                        <div class="col btnsplitcol bg-warning"> <i class="fa fa-info-circle"></i></div>
+                        <div class="col btnsplitcol bg-warning" onclick="alert('click on any of the Stock to get the stock information  ')"> <i class="fa fa-info-circle"></i></div>
                         {% comment %} <div class="col btnsplitcol"> Info</div> {% endcomment %}
                     </div>
                 </div>
@@ -90,11 +82,11 @@
 
 
 <div>
-  <button class="button" onClick="window.location.href = 'graphCryto/{{content.slug}}' ;"> GRAPH1</button>
+  <button style= "width: 96vw;" class="button" onClick="window.location.href = 'graphCryto/{{content.slug}}' ;"> GRAPH1</button>
 <div>
 <form  METHOD="POST">
    {% csrf_token %} 
-  <button class="button" type="submit"> GRAPH2</button>
+  <button class="button" style= "width: 96vw;" type="submit"> GRAPH2</button>
 
 </form>
   

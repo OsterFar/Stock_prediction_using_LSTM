@@ -34,3 +34,7 @@ ul {
     border-radius: 42px;
     background: rgb(61, 61, 61);
 }
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background: #212529;
+}

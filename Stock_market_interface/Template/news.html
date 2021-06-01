@@ -1,27 +1,54 @@
 
-{% extends "Base.html" %}
+{% extends "index.html" %}
 {% load static%}
 
-
-
-
-
-<!-- ACtive navbar -->
-{% block nav%}
-<li class="nav-item">
-  <a class="nav-link" id = "home" onclick="func(this.id)"aria-current="page" href="{% url 'home'%}">Popular</a>
-  </li>
-  <li class="nav-item">
-  <a class="nav-link" id = "Cryto" onclick="func(this.id)" href="{% url 'cryptohome'%}">CryptoCurrency</a>
-  </li>
-  <li class="nav-item">
-  <a class="nav-link active" id = "news" onclick="func(this.id)" href="{% url 'newshome'%}">News</a>
-  </li>
+{% block PAGE_NAmE %} 
+  News 
 {% endblock%}
+
 
 {% block Body_Header%}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/news.css' %}">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+</style>
+
+
 
 <!--### any css styling if you want to add for any particular page ####-->
 {% endblock%}
@@ -29,7 +56,30 @@
 <!-- Content -->
 
 
-{% block Body_Content%}
+{% block Body_content_admin%}
+
+<script>
+
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("h5"); 
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0]; 
+        //a =  ul[i].getElementsByTagName("h5")[0] ;
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            ul.style.display = "none";
+        }
+    }
+}
+</script>
+
+
 <div style = "background-color:#f7f7f7; width: 100vw; padding: 2vw; /*! overflow: hidden; */padding-bottom: 0px; ">   
     <div class = "container-fluid">
         <div class="container" id="heading" style ="display:block;  ">
@@ -58,14 +108,16 @@
 
 {% comment %} News Showing  {% endcomment %}
 <div class="container-fluid" style="border:1px solid #cfcfcf;background-color: white;">
+    
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
     <h3> Stock Articles</h3>
     
     {%  for new in data %}
         {% if  forloop.counter <= 18 %}
             <div class="container newcontainer" style="border:1px solid #cfcfcf;">
-                <div class="news-Heading" style="background-color: #e6e6e6;" >
+                <div class="news-Heading" style="background-color: #e6e6e6;" id="myUL">
                     <h3> StockNo{{forloop.counter}} ::</h3>
-                    <h5> {{new.title}}</h5>
+                    <h5>  <a href ="#">{{new.title}}<a> </h5> 
                     <p> {{new.publishedAt}}</p> 
                     
                 </div>

@@ -1,46 +1,18 @@
 
-{% extends "Base.html" %}
+{% extends "index.html" %}
 {% load static%}
-<script>
-  function func_alert(){
-    alert("CLICK ON ANY OF THE STOCK TO GET INFORMATION OF PARTICULAR STOCK")
-  }
-</script>
-<!-- ACtive navbar -->
-{% block nav%}
-<li class="nav-item">
-  <a class="nav-link" id = "home" onclick="func(this.id)"aria-current="page" href="{% url 'home'%}">Popular</a>
-  </li>
-  <li class="nav-item">
-  <a class="nav-link active" id = "Cryto" onclick="func(this.id)" href="{% url 'cryptohome'%}">CryptoCurrency</a>
-  </li>
-  <li class="nav-item">
-  <a class="nav-link" id = "news" onclick="func(this.id)" href="{% url 'newshome'%}">News</a>
-  </li>
-{% endblock%}
+
 
 
 {% block Body_Header%}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
-
-<!--### any css styling if you want to add for any particular page ####-->
-{% endblock%}
-
-<!-- Content -->
-
-
-{% block Body_Content%}
-
 <script>
 function myFunction() {
-  // Declare variables
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
     if (td) {
@@ -50,11 +22,63 @@ function myFunction() {
       } else {
         tr[i].style.display = "none";
       }
-    }
+    }       
   }
 }
 </script>
-<div style = "background-color:#f7f7f7; width: 100vw; padding: 2vw; ">   
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+#submit_btn{
+  display:flex ;
+}
+</style>
+<!--### any css styling if you want to add for any particular page ####-->
+{% endblock%}
+
+<!-- Content -->
+{% block PAGE_NAmE %} 
+  CRYPTO_PREDICTION 
+{% endblock%}
+
+{% block Body_content_admin%}
+
+<div style = "background-color:#f7f7f7;  padding: 2vw; ">   
     <div class = "container-fluid">
         <div class="container" id="heading" style ="display:flex; justify-content: center; flex-wrap: wrap;">
             <h3> Active CryptoCurrency stocks </h3>
@@ -64,35 +88,30 @@ function myFunction() {
             <div class ="Btn-Refresh row">
                 <form METHOD="POST"> 
                   {% csrf_token %}
-                  <button type="submit">
+                  <button type="submit" id="submit_btn">
                     <div class="col btnsplitcol bg-primary" > <i class="fa fa-refresh" aria-hidden="true"></i></div>
                     <div class="col btnsplitcol"> Refresh</div>    
                   </button>
-                  
-
+        
                 </form>
                 
             </div>
             <div class ="Btn-Info row">
                 <div  class="col btnsplitcol bg-warning" onclick="alert('click on any of the Stock to get the stock information ')"> <i class="fa fa-info-circle"></i></div>
-                <div class="col btnsplitcol"> Info</div>
+                <div class="col btnsplitcol" onclick="alert('click on any of the Stock to get the stock information  ')"> Info</div>
             </div>
-            <div class ="Btn-Search row">
-                {% comment %} <div class="col btnsplitcol "> <i class="fa fa-search"></i></div>
-                
+           <div class ="Btn-Search row">
+                <div class="col btnsplitcol " style="max-width: 4vw;"> <i class="fa fa-search"></i></div>
                 <div class="search col btnsplitcol" style ="padding: 0px;
-                  padding-top: 4px;"> <input class="form-control me-2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." aria-label="Search"></div>
-                 {% endcomment %}
+                  padding-top: 4px;"> <input  type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"></div>
+                </div>
             </div>
-            
-
-
         </div>
         
     <div>
 </div>
 
-<table class="myTable table table-dark table-striped">
+<table   id="myTable" class="myTable table table-dark table-striped">
   <thead>
     <tr class="Header">
       <th scope="col">#</th>
@@ -117,7 +136,7 @@ function myFunction() {
     </tr>
 
     <tr onClick="window.location.href = 'Cryto/BNB' ;">
-      <th scope="row">1</th>
+      <th scope="row">2</th>
       <td>BNB_USD </td>
       <td>{{content.BNB_USD.shortName}}</td>
       <td>{{content.BNB_USD.dayHigh}}</td>
@@ -125,7 +144,7 @@ function myFunction() {
     </tr>
 
     <tr onClick="window.location.href = 'Cryto/BTC' ;">
-      <th scope="row">1</th>
+      <th scope="row">3</th>
       <td>BTC_USD </td>
       <td>{{content.BTC_USD.shortName}}</td>
       <td>{{content.BTC_USD.dayHigh}}</td>
@@ -133,7 +152,7 @@ function myFunction() {
     </tr>
 
     <tr onClick="window.location.href = 'Cryto/DOGE' ;">
-      <th scope="row">1</th>
+      <th scope="row">4</th>
       <td>DOGE_USD </td>
       <td>{{content.DOGE_USD.shortName}}</td>
       <td>{{content.DOGE_USD.dayHigh}}</td>
@@ -142,17 +161,14 @@ function myFunction() {
 
 
     <tr onClick="window.location.href = 'Cryto/ETH' ;">
-      <th scope="row">1</th>
+      <th scope="row">5</th>
       <td>ETH_USD </td>
       <td>{{content.ETH_USD.shortName}}</td>
       <td>{{content.ETH_USD.dayHigh}}</td>
       <td>{{content.ETH_USD.52WeekChange}}</td>
-    </tr>
-
-
-  
+    </tr> 
   </tbody>
 </table>
 
-    
+
 {% endblock %}

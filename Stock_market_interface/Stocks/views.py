@@ -7,11 +7,18 @@ import yfinance as yf
 # from .testerModuleFunction import tester_function
 # Create your views here.
 def homepage(request) :
-    dictt = callFunction_object()
-    #dictt = 0
+    if  request.method=='GET' :
+        
+        dictt = callFunction_object()
+        #dictt = 0
 
-    return render(request , 'Home.html',{'content':dictt})
+        return render(request , 'Home.html',{'content':dictt})
+    else :
+        dictt = callFunction_object()
+        #dictt = 0
 
+        return render(request , 'Home.html',{'content':dictt})
+    
 def StockPrimary(request ,slug) :
     
     msft = yf.Ticker(slug)

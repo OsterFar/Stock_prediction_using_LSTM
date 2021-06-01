@@ -47,7 +47,7 @@
                     <div id = "paragraph">
                         {{content.heading}}
                     </div>
-                    <div class ="Btn-Refresh row">
+                    <div class ="Btn-Refresh row" onClick="window.location.href = '{{content.slug}}' ;">
                         <div class="col btnsplitcol bg-primary" > <i class="fa fa-refresh" aria-hidden="true"></i></div>
                         {% comment %} <div class="col btnsplitcol"> Refresh</div> {% endcomment %}
                     </div>
@@ -117,11 +117,11 @@
   </tbody>
 </table>
 <div>
-  <button class= "button"onClick="window.location.href = 'GRAPH/{{content.slug}}' ;"> GRAPH1</button>
+  <button style= "width: 96vw;" class= "button"onClick="window.location.href = 'GRAPH/{{content.slug}}' ;"> GRAPH1</button>
 <div>
 <form  METHOD="POST">
    {% csrf_token %} 
-  <button   class= "button" type="submit"> GRAPH2</button>
+  <button    style= "width: 96vw;"class= "button" type="submit"> GRAPH2</button>
 
 </form>
 
