@@ -109,15 +109,14 @@ function myFunction() {
 {% comment %} News Showing  {% endcomment %}
 <div class="container-fluid" style="border:1px solid #cfcfcf;background-color: white;">
     
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-    <h3> Stock Articles</h3>
+    
     
     {%  for new in data %}
         {% if  forloop.counter <= 18 %}
             <div class="container newcontainer" style="border:1px solid #cfcfcf;">
                 <div class="news-Heading" style="background-color: #e6e6e6;" id="myUL">
-                    <h3> StockNo{{forloop.counter}} ::</h3>
-                    <h5>  <a href ="#">{{new.title}}<a> </h5> 
+                    
+                    <h3>  <a href ="#">{{new.title}}<a> </h3> 
                     <p> {{new.publishedAt}}</p> 
                     
                 </div>
